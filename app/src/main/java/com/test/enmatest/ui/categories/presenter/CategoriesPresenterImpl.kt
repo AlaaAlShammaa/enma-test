@@ -8,4 +8,15 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class CategoriesPresenterImpl<V : ICategoriesView, I : ICategoriesInteractor> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenterImpl<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable), ICategoriesPresenter<V, I> {
+    override fun loadCategories() {
+        interactor?.let {
+            compositeDisposable.add(it.getCategories()
+                .compose(schedulerProvider.ioToMainSingleScheduler())
+                .subscribe({response ->
+
+                },{throwable ->
+
+                }))
+        }
+    }
 }

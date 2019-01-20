@@ -19,6 +19,7 @@ import com.google.gson.Gson
 import com.test.enmatest.data.network.ApiHeader
 import com.test.enmatest.data.network.ApiHelper
 import com.test.enmatest.data.network.AppApiHelper
+import com.test.enmatest.data.network.PresetQueryParams
 import com.test.enmatest.data.preferences.AppPreferenceHelper
 import com.test.enmatest.data.preferences.PreferenceHelper
 import com.test.enmatest.util.AppConstants
@@ -68,6 +69,13 @@ class AppModule {
     }
 
     @Provides
+    internal fun providePresetQueryParams(): PresetQueryParams {
+        return PresetQueryParams(
+            "14378174", "cFJiGxZVTGf3rPNMK1o08WQWWpnr8M9RmZOyGxcM","diBIGrtVCAH00GtMVLupirbNdFEjooqk8YPJUtUw"
+        )
+    }
+
+    @Provides
     @Singleton
     internal fun provideCalligraphyDefaultCCustomToolonfig(): CalligraphyConfig {
         return CalligraphyConfig.Builder()
@@ -81,6 +89,7 @@ class AppModule {
     @Singleton
     fun provideGson(): Gson {
         val gsonBuilder = GsonBuilder()
+        gsonBuilder.excludeFieldsWithoutExposeAnnotation()
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
         return gsonBuilder.create()
     }

@@ -7,6 +7,7 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.gsonparserfactory.GsonParserFactory
 import com.androidnetworking.interceptors.HttpLoggingInterceptor
 import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.test.enmatest.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
@@ -23,6 +24,9 @@ class EnmaApp : Application(), HasActivityInjector, HasServiceInjector {
     @Inject
     internal lateinit var dispatchingServiceInjector: DispatchingAndroidInjector<Service>
 
+    @Inject
+    lateinit var gson: Gson
+
     override fun activityInjector() = activityDispatchingAndroidInjector
 
     override fun serviceInjector(): AndroidInjector<Service> = dispatchingServiceInjector
@@ -35,9 +39,7 @@ class EnmaApp : Application(), HasActivityInjector, HasServiceInjector {
             .build()
             .inject(this)
 
-        val gson = GsonBuilder()
-            .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
-            .create()
+
         AndroidNetworking.initialize(applicationContext)
         AndroidNetworking.setParserFactory(GsonParserFactory(gson))
         if (BuildConfig.DEBUG) {

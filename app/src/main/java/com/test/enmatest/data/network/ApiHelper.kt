@@ -6,6 +6,5 @@ import io.reactivex.Single
 import org.json.JSONObject
 
 interface ApiHelper {
-
-
+    fun getCategories(): Single<CategoriesResponse>
 }

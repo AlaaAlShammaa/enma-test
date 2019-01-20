@@ -5,4 +5,5 @@ import com.test.enmatest.ui.categories.interactor.ICategoriesInteractor
 import com.test.enmatest.ui.categories.view.ICategoriesView
 
 interface ICategoriesPresenter<V : ICategoriesView, I : ICategoriesInteractor> : IPresenter<V, I> {
+    fun loadCategories()
 }
