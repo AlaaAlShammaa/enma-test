@@ -81,8 +81,11 @@ dependencies {
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.2'
 
     // rtl viewpager
-
     implementation 'com.duolingo.open:rtl-viewpager:1.0.3'
+
+    // skeleton ui
+    implementation 'com.ethanhua:skeleton:1.1.2'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
     
     // UI Testing
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
