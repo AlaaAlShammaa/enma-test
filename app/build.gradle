@@ -1,0 +1,104 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.test.enmatest"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"http://stg.api.fawasell.com/v1/\"")
+            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"http://stg.api.fawasell.com/v1/\"")
+            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // android support libraries
+    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.supportLibraryVersion"
+    implementation "androidx.cardview:cardview:$rootProject.supportLibraryVersion"
+    implementation "com.google.android.material:material:$rootProject.supportLibraryVersion"
+    implementation "androidx.vectordrawable:vectordrawable:$rootProject.supportLibraryVersion"
+    implementation "androidx.vectordrawable:vectordrawable-animated:$rootProject.supportLibraryVersion"
+    implementation "androidx.legacy:legacy-support-core-ui:$rootProject.supportLibraryVersion"
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.supportLibraryVersion"
+
+    // network
+    implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2FastAndroidNetworking"
+
+    // font
+    implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
+    implementation "me.grantland:autofittextview:$rootProject.autofitTextViewVersion"
+
+    // logger
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    // image
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+
+    // parser
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    // dependency injection
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger2Version"
+
+    // reactive
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbindingVersion"
+
+    // Android Kotlin Extension
+    implementation "androidx.core:core-ktx:$rootProject.androidKTXVersion"
+    implementation "org.jetbrains.anko:anko:$rootProject.anko_version"
+
+    // nav view
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.2'
+
+    // rtl viewpager
+
+    implementation 'com.duolingo.open:rtl-viewpager:1.0.3'
+    
+    // UI Testing
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+    implementation "androidx.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+}

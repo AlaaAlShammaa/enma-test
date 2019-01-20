@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_bar_home">الرئيسية</string>
+    <string name="tab_bar_categories">التصنيفات</string>
+    <string name="tab_bar_config">الإعدادات</string>
+    <string name="tab_bar_account">الحساب</string>
+    <string name="title_home">الرئيسية</string>
+
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">EnmaTest</string>
+    <string name="tab_bar_home">Home</string>
+    <string name="tab_bar_categories">Categories</string>
+    <string name="tab_bar_account">Account</string>
+    <string name="tab_bar_config">Settings</string>
+    <string name="title_home">Home</string>
+</resources>

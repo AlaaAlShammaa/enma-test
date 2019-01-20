@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="super_tiny_font">8sp</dimen>
+    <dimen name="tiny_font">10sp</dimen>
+    <dimen name="small_font">13sp</dimen>
+    <dimen name="medium_font">15sp</dimen>
+    <dimen name="large_font">17sp</dimen>
+    <dimen name="x_large_font">20sp</dimen>
+    <dimen name="super_large_font">30sp</dimen>
+    <dimen name="huge_font">50sp</dimen>
+</resources>
