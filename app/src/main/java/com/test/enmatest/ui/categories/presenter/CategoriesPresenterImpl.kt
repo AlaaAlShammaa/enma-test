@@ -30,7 +30,7 @@ class CategoriesPresenterImpl<V : ICategoriesView, I : ICategoriesInteractor> @I
     }
 
     override fun onItemClick(category: Category) {
-        getView()?.onCategoryItemClicked(category)
+        getView()?.launchCategoryFeed(category)
     }
 
 }

@@ -6,6 +6,7 @@ import com.test.enmatest.ui.home.interactor.IHomeInteractor
 import com.test.enmatest.ui.home.presenter.IHomePresenter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.test.enmatest.ui.home.adapter.HomeVPAdapter
 import com.test.enmatest.util.gone
@@ -38,6 +39,21 @@ class HomeActivity : BaseActivity(), IHomeView, HasSupportFragmentInjector {
         bottomNavView.setTextVisibility(false)
         bottomNavView.enableAnimation(false)
         homeVPAdapter = HomeVPAdapter(supportFragmentManager, this)
+        mainViewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {}
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+            override fun onPageSelected(position: Int) {
+                when(position) {
+                    0 -> toolbarTitle.text = getString(R.string.tab_bar_home)
+                    1 -> toolbarTitle.text = getString(R.string.tab_bar_categories)
+                    2 -> toolbarTitle.text = getString(R.string.tab_bar_account)
+                    3 -> toolbarTitle.text = getString(R.string.tab_bar_config)
+                }
+            }
+
+        })
         mainViewPager.adapter = homeVPAdapter
         mainViewPager.offscreenPageLimit = 4
         bottomNavView.setupWithViewPager(mainViewPager)

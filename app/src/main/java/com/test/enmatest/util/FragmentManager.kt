@@ -20,7 +20,7 @@ internal fun FragmentManager.removeFragment(tag: String,
 
 internal fun FragmentManager.addFragment(containerViewId: Int,
                                          fragment: Fragment,
-                                         tag: String,
+                                         tag: String?,
                                          slideIn: Int = R.anim.slide_left,
                                          slideOut: Int = R.anim.slide_right) {
     this.beginTransaction().disallowAddToBackStack()

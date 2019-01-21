@@ -15,6 +15,7 @@ import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
 import com.test.enmatest.data.network.model.Category
 import com.test.enmatest.ui.categories.adapter.CategoriesAdapter
+import com.test.enmatest.ui.categoryFeed.view.CategoryFeedActivity
 import kotlinx.android.synthetic.main.fragment_categories.*
 import javax.inject.Inject
 
@@ -82,8 +83,10 @@ class CategoriesFragment : BaseFragment(), ICategoriesView {
         mCategoriesSkeleton.hide()
     }
 
-    override fun onCategoryItemClicked(category: Category) {
-        Toast.makeText(context, "Clicked on category with id ${category.id}", Toast.LENGTH_LONG).show()
+    override fun launchCategoryFeed(category: Category) {
+        activity?.let {
+            startActivity(CategoryFeedActivity.getStartIntent(it, "${category.id}", category.name))
+        }
     }
 
     override fun setUp() {

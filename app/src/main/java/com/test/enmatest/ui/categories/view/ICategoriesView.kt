@@ -8,5 +8,5 @@ interface ICategoriesView : IView {
     fun setupCategoriesRV()
     fun showSkeletonUI()
     fun hideSkeletonUI()
-    fun onCategoryItemClicked(category: Category)
+    fun launchCategoryFeed(category: Category)
 }
