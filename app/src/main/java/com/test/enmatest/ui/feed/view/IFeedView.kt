@@ -8,4 +8,5 @@ interface IFeedView : IView {
     fun showToolbarProgress()
     fun hideToolbarProgress()
     fun reflectPosts(posts: List<Post>?, isNewList: Boolean)
+    fun searchByQuery(query: String)
 }

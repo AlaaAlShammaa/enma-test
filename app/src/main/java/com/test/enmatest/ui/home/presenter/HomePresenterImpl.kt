@@ -12,4 +12,8 @@ class HomePresenterImpl<V : IHomeView, I : IHomeInteractor> @Inject internal con
     override fun setupBottomNavView() {
         getView()?.customizeBottomNavView()
     }
+
+    override fun onSearchClicked() {
+        getView()?.launchSearch()
+    }
 }

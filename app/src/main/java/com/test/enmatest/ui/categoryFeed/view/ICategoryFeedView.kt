@@ -5,4 +5,5 @@ import com.test.enmatest.ui.base.view.IView
 interface ICategoryFeedView : IView {
     fun showToolbarProgress()
     fun hideToolbarProgress()
+    fun launchSearch()
 }

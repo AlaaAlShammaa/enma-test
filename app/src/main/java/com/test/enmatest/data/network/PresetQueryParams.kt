@@ -18,6 +18,5 @@ fun getHashKey(queryParams: PresetQueryParams, vararg additionalSignatureInfo: S
     val stringBuilder = StringBuilder()
     for (string in additionalSignatureInfo)
         stringBuilder.append(string)
-    val signature= "$stringBuilder${queryParams.appId}${queryParams.appSecret}${queryParams.hashKey}".md5()
-    return signature
+    return "$stringBuilder${queryParams.appId}${queryParams.appSecret}${queryParams.hashKey}".md5()
 }

@@ -6,6 +6,8 @@ import com.test.enmatest.ui.categoryFeed.view.CategoryFeedActivity
 import com.test.enmatest.ui.feed.FeedFragmentProvider
 import com.test.enmatest.ui.home.HomeActivityModule
 import com.test.enmatest.ui.home.view.HomeActivity
+import com.test.enmatest.ui.searchFeed.SearchFeedActivityModule
+import com.test.enmatest.ui.searchFeed.view.SearchFeedActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -16,5 +18,8 @@ abstract class ActivityBuilder {
     abstract fun bindHomeActivityModule(): HomeActivity
     @ContributesAndroidInjector(modules = [(CategoryFeedActivityModule::class), (FeedFragmentProvider::class)])
     abstract fun bindCategoryFeedActivityModule(): CategoryFeedActivity
+
+    @ContributesAndroidInjector(modules = [(SearchFeedActivityModule::class), (FeedFragmentProvider::class)])
+    abstract fun bindSearchFeedActivityModule(): SearchFeedActivity
 
 }

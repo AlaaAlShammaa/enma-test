@@ -6,4 +6,5 @@ import com.test.enmatest.ui.home.view.IHomeView
 
 interface IHomePresenter<V : IHomeView, I : IHomeInteractor> : IPresenter<V, I> {
     fun setupBottomNavView()
+    fun onSearchClicked()
 }

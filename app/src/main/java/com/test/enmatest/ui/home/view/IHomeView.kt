@@ -6,4 +6,5 @@ interface IHomeView : IView {
     fun customizeBottomNavView()
     fun showToolbarProgress()
     fun hideToolbarProgress()
+    fun launchSearch()
 }

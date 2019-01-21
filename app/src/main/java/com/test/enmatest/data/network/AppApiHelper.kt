@@ -32,13 +32,12 @@ class AppApiHelper @Inject constructor(private val apiHeader: ApiHeader, private
         }
         if (!query.isNullOrBlank()) {
             builder.addQueryParameter("q", query)
-            stringBuilder.append(query)
         }
         builder
             .addQueryParameter("page", pageNumber.toString())
             .addQueryParameter("limit", pageSize.toString())
             .addQueryParameter(queryParams)
-            .addQueryParameter("signature", getHashKey(queryParams, pageSize.toString(), pageNumber.toString(), stringBuilder.toString()))
+            .addQueryParameter("signature", getHashKey(queryParams, query, pageSize.toString(), pageNumber.toString(), stringBuilder.toString()))
         return builder
             .build()
             .getObjectSingle(FeedResponse::class.java)

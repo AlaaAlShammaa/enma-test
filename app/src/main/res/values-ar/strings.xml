@@ -5,5 +5,5 @@
     <string name="tab_bar_config">الإعدادات</string>
     <string name="tab_bar_account">الحساب</string>
     <string name="title_home">الرئيسية</string>
-
+    <string name="search_title">بحث</string>
 </resources>

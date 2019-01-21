@@ -5,5 +5,5 @@ import com.test.enmatest.ui.categoryFeed.interactor.ICategoryFeedInteractor
 import com.test.enmatest.ui.categoryFeed.view.ICategoryFeedView
 
 interface ICategoryFeedPresenter<V : ICategoryFeedView, I : ICategoryFeedInteractor> : IPresenter<V, I> {
-
+    fun onSearchClicked()
 }

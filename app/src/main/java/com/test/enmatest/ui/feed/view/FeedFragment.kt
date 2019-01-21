@@ -127,8 +127,7 @@ class FeedFragment : BaseFragment(), IFeedView {
         })
 
         swipeRefreshLayout.setOnRefreshListener {
-            presenter.setLastPageNumber(0)
-            presenter.getPosts(categoryId, query, true, true)
+            refreshSearch()
         }
     }
 
@@ -137,5 +136,14 @@ class FeedFragment : BaseFragment(), IFeedView {
         presenter.getPosts(categoryId, query, true, false)
     }
 
+    override fun searchByQuery(query: String) {
+        this.query = query
+        refreshSearch()
+    }
+
+    private fun refreshSearch() {
+        presenter.setLastPageNumber(0)
+        presenter.getPosts(categoryId, query, true, true)
+    }
 }
 

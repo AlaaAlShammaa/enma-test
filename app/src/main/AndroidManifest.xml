@@ -23,6 +23,9 @@
         </activity>
         <activity android:name=".ui.categoryFeed.view.CategoryFeedActivity"
                   android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.searchFeed.view.SearchFeedActivity"
+                  android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

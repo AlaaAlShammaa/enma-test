@@ -8,5 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class CategoryFeedPresenterImpl<V : ICategoryFeedView, I : ICategoryFeedInteractor> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenterImpl<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable), ICategoryFeedPresenter<V, I> {
-
+    override fun onSearchClicked() {
+        getView()?.launchSearch()
+    }
 }
