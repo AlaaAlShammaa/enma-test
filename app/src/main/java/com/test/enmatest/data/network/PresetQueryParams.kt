@@ -3,7 +3,6 @@ package com.test.enmatest.data.network
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.test.enmatest.util.md5
-import kotlin.math.sign
 
 data class PresetQueryParams(
     @Expose
@@ -19,6 +18,5 @@ fun getHashKey(queryParams: PresetQueryParams, vararg additionalSignatureInfo: S
     val stringBuilder = StringBuilder()
     for (string in additionalSignatureInfo)
         stringBuilder.append(string)
-    val signature = "${stringBuilder.toString()}${queryParams.appId}${queryParams.appSecret}${queryParams.hashKey}".md5()
-    return signature
+    return "$stringBuilder${queryParams.appId}${queryParams.appSecret}${queryParams.hashKey}".md5()
 }

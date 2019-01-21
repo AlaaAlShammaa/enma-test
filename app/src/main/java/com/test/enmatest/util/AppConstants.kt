@@ -5,6 +5,7 @@ import androidx.annotation.StringDef
 object AppConstants {
 
     internal const val PREF_NAME = "enmatest_pref"
+    internal const val PAGE_SIZE = 10
     internal const val NO_INTERNET_ERROR = 0
     internal const val SESSION_EXPIRED = 106
     internal const val ERROR_CODE_RAHAL_NOT_ENOUGH_QUOTA = 301

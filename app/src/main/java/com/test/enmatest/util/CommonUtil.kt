@@ -48,7 +48,8 @@ object CommonUtil {
     fun isEmailValid(email: String): Boolean {
         val pattern: Pattern
         val matcher: Matcher
-        val EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+        val EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
         pattern = Pattern.compile(EMAIL_PATTERN)
         matcher = pattern.matcher(email)
         return matcher.matches()
@@ -150,6 +151,14 @@ object CommonUtil {
         }
 
         return String.format("%1.2f %2s", distance, unit)
+    }
+
+    fun getFormattedCount(count: Int?): String {
+        return if (count != null && count > 1000) {
+            "${(count / 1000)}k"
+        } else {
+            "$count"
+        }
     }
 
 }

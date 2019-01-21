@@ -50,6 +50,7 @@ ext {
     permissionDispatcherVersion = '3.3.1'
     minioVersion = '4.0.2'
     anko_version = '0.10.5'
+    circleImageViewVersion = '3.2.0'
 
 
     //Test dependencies

@@ -7,4 +7,5 @@ import org.json.JSONObject
 
 interface ApiHelper {
     fun getCategories(): Single<CategoriesResponse>
+    fun getPosts(query: String?, pageNumber: Int, pageSize: Int): Single<FeedResponse>
 }
