@@ -14,9 +14,10 @@ data class PresetQueryParams(
     val hashKey: String
 )
 
-fun getHashKey(queryParams: PresetQueryParams, vararg additionalSignatureInfo: String): String {
+fun getHashKey(queryParams: PresetQueryParams, vararg additionalSignatureInfo: String?): String {
     val stringBuilder = StringBuilder()
     for (string in additionalSignatureInfo)
         stringBuilder.append(string)
-    return "$stringBuilder${queryParams.appId}${queryParams.appSecret}${queryParams.hashKey}".md5()
+    val signature= "$stringBuilder${queryParams.appId}${queryParams.appSecret}${queryParams.hashKey}".md5()
+    return signature
 }

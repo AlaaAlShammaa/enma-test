@@ -16,13 +16,20 @@ import com.test.enmatest.data.network.model.Post
 import com.test.enmatest.ui.feed.adapter.FeedAdapter
 import kotlinx.android.synthetic.main.fragment_feed.*
 import javax.inject.Inject
+import androidx.recyclerview.widget.RecyclerView
+import com.test.enmatest.ui.home.view.HomeActivity
+import com.test.enmatest.util.AppConstants
+
 
 class FeedFragment : BaseFragment(), IFeedView {
 
     @Inject
     internal lateinit var presenter: IFeedPresenter<IFeedView, IFeedInteractor>
     private lateinit var mFeedAdapter: FeedAdapter
-    private var query: String? = null
+    private val categoryId by lazy {
+        arguments?.getString(EXTRA_CATEGORY_ID)
+    }
+    private var query: String = ""
 
     private val mFeedSkeleton: RecyclerViewSkeletonScreen by lazy {
         Skeleton.bind(feedRV)
@@ -32,8 +39,10 @@ class FeedFragment : BaseFragment(), IFeedView {
     }
 
     companion object {
-        fun newInstance(): FeedFragment {
+        const val EXTRA_CATEGORY_ID = "EXTRA_CATEGORY_ID"
+        fun newInstance(categoryId: String? = null): FeedFragment {
             val args: Bundle = Bundle()
+            args.putString(EXTRA_CATEGORY_ID, categoryId)
             val fragment = FeedFragment()
             fragment.arguments = args
             return fragment
@@ -61,16 +70,33 @@ class FeedFragment : BaseFragment(), IFeedView {
     }
 
     override fun showProgress() {
+        swipeRefreshLayout.isRefreshing = true
         mFeedSkeleton.show()
     }
 
     override fun hideProgress() {
         mFeedSkeleton.hide()
+        swipeRefreshLayout.isRefreshing = false
     }
 
-    override fun reflectPosts(posts: List<Post>?) {
+    override fun showToolbarProgress() {
+        swipeRefreshLayout.isRefreshing = true
+        if (activity is HomeActivity) {
+            (activity as HomeActivity).showToolbarProgress()
+        }
+    }
+
+    override fun hideToolbarProgress() {
+        if (activity is HomeActivity) {
+            (activity as HomeActivity).hideToolbarProgress()
+        }
+        swipeRefreshLayout.isRefreshing = false
+    }
+
+
+    override fun reflectPosts(posts: List<Post>?, isNewList: Boolean) {
         posts?.let {
-            mFeedAdapter.addItems(it)
+            mFeedAdapter.addItems(it, isNewList)
         }
     }
 
@@ -80,11 +106,35 @@ class FeedFragment : BaseFragment(), IFeedView {
         feedRV.adapter = mFeedAdapter
         feedRV.layoutManager = LinearLayoutManager(context)
         feedRV.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
+        feedRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount = recyclerView.layoutManager!!.childCount
+                val totalItemCount = recyclerView.layoutManager!!.itemCount
+                val firstVisibleItemPosition =
+                    (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+                if (!swipeRefreshLayout.isRefreshing) {
+                    if (visibleItemCount + firstVisibleItemPosition >= totalItemCount - AppConstants.PAGINATION_MARGIN
+                        && firstVisibleItemPosition >= 0
+                        && totalItemCount >= AppConstants.PAGE_SIZE
+                    ) {
+                        presenter.getPosts(categoryId, query, false, false)
+                    }
+                }
+            }
+        })
+
+        swipeRefreshLayout.setOnRefreshListener {
+            presenter.setLastPageNumber(0)
+            presenter.getPosts(categoryId, query, true, true)
+        }
     }
 
     override fun setUp() {
         setupFeedRV()
-        presenter.getPosts(query)
+        presenter.getPosts(categoryId, query, true, false)
     }
 
 }

@@ -8,5 +8,5 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class FeedInteractorImpl @Inject internal constructor(preferenceHelper: PreferenceHelper, apiHelper: ApiHelper) : BaseInteractorImpl(preferenceHelper = preferenceHelper, apiHelper = apiHelper), IFeedInteractor {
-    override fun getPosts(query: String?, pageNumber: Int, pageSize: Int): Single<FeedResponse> = apiHelper.getPosts(query, pageNumber, pageSize)
+    override fun getPosts(categoryId: String?, query: String?, pageNumber: Int, pageSize: Int): Single<FeedResponse> = apiHelper.getPosts(categoryId, query, pageNumber, pageSize)
 }

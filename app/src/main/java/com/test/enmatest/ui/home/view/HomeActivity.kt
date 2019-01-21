@@ -8,7 +8,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.test.enmatest.ui.home.adapter.HomeVPAdapter
+import com.test.enmatest.util.gone
 import com.test.enmatest.util.removeFragment
+import com.test.enmatest.util.visible
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -39,6 +41,16 @@ class HomeActivity : BaseActivity(), IHomeView, HasSupportFragmentInjector {
         mainViewPager.adapter = homeVPAdapter
         mainViewPager.offscreenPageLimit = 4
         bottomNavView.setupWithViewPager(mainViewPager)
+    }
+
+    override fun showToolbarProgress() {
+        toolbarProgress.visible()
+        toolbarSearchIV.gone()
+    }
+
+    override fun hideToolbarProgress() {
+        toolbarProgress.gone()
+        toolbarSearchIV.visible()
     }
 
     override fun onFragmentAttached(tag: String?) {

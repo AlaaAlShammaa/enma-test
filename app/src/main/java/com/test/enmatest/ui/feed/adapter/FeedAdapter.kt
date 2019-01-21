@@ -27,8 +27,9 @@ class FeedAdapter : RecyclerView.Adapter<FeedAdapter.FeedVH>() {
         holder.onBind(items[position])
     }
 
-    fun addItems(posts: List<Post>) {
-        items.clear()
+    fun addItems(posts: List<Post>, isNewList: Boolean) {
+        if (isNewList)
+            items.clear()
         items.addAll(posts)
         notifyDataSetChanged()
     }
@@ -53,6 +54,7 @@ class FeedAdapter : RecyclerView.Adapter<FeedAdapter.FeedVH>() {
             itemView.thumbUpCountTV.text = CommonUtil.getFormattedCount(post.likeCount)
             itemView.commentCountTV.text = CommonUtil.getFormattedCount(post.commentCount)
         }
+
         init {
             itemView.setOnClickListener {
                 callback?.onItemClick(post = items[adapterPosition])

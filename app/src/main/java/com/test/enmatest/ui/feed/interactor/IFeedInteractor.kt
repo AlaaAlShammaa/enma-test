@@ -5,5 +5,5 @@ import com.test.enmatest.ui.base.interactor.IInteractor
 import io.reactivex.Single
 
 interface IFeedInteractor : IInteractor {
-    fun getPosts(query: String?, pageNumber: Int, pageSize: Int): Single<FeedResponse>
+    fun getPosts(categoryId: String?, query: String?, pageNumber: Int, pageSize: Int): Single<FeedResponse>
 }

@@ -22,10 +22,13 @@ class AppApiHelper @Inject constructor(private val apiHeader: ApiHeader, private
             .build()
             .getObjectSingle(CategoriesResponse::class.java)
 
-    override fun getPosts(query: String?, pageNumber: Int, pageSize: Int): Single<FeedResponse> =
+    override fun getPosts(categoryId: String?, query: String?, pageNumber: Int, pageSize: Int): Single<FeedResponse> =
         Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_GET_POSTS)
+            .addQueryParameter("q", query)
+            .addQueryParameter("page", pageNumber.toString())
+            .addQueryParameter("limit", pageSize.toString())
             .addQueryParameter(queryParams)
-            .addQueryParameter("signature", getHashKey(queryParams))
+            .addQueryParameter("signature", getHashKey(queryParams, query, pageSize.toString(), pageNumber.toString()))
             .build()
             .getObjectSingle(FeedResponse::class.java)
 

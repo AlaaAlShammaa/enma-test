@@ -5,5 +5,7 @@ import com.test.enmatest.ui.base.view.IView
 
 interface IFeedView : IView {
     fun setupFeedRV()
-    fun reflectPosts(posts: List<Post>?)
+    fun showToolbarProgress()
+    fun hideToolbarProgress()
+    fun reflectPosts(posts: List<Post>?, isNewList: Boolean)
 }

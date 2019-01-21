@@ -25,6 +25,16 @@
                     android:scaleType="fitCenter"
                     android:layout_centerVertical="true"
                     android:layout_margin="16dp"/>
+            <ProgressBar
+                    android:id="@+id/toolbarProgress"
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:tint="@color/colorAccent"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:scaleType="fitCenter"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="16dp"/>
 
             <TextView
                     android:id="@+id/toolbarTitle"
