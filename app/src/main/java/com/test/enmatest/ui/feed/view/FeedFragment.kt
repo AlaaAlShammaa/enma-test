@@ -70,7 +70,6 @@ class FeedFragment : BaseFragment(), IFeedView {
     }
 
     override fun showProgress() {
-        swipeRefreshLayout.isRefreshing = true
         mFeedSkeleton.show()
     }
 
@@ -80,7 +79,6 @@ class FeedFragment : BaseFragment(), IFeedView {
     }
 
     override fun showToolbarProgress() {
-        swipeRefreshLayout.isRefreshing = true
         if (activity is HomeActivity) {
             (activity as HomeActivity).showToolbarProgress()
         }
